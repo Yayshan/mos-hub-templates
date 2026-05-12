@@ -17,6 +17,12 @@
       "mode": "",
       "host": "/mnt/cache/appdata/vaultwarden",
       "container": "/data"
+    },
+    {
+      "name": "MOS X509 Server Certificate",
+      "mode": "ro",
+      "host": "/etc/nginx/ssl",
+      "container": "/ssl"
     }
   ],
   "ports": [
@@ -27,6 +33,15 @@
       "container": "80"
     }
   ],
-  "variables": [],
+  "variables": [
+    {
+      "name": "",
+      "key": "ROCKET_TLS",
+      "value": "{certs="/ssl/nginx.crt",key="/ssl/nginx.key"}",
+      "description": "Use the x509 direct from the mos server without setting up an reverse proxy",
+      "required": true,
+      "mask": true
+    }
+  ],
   "devices": []
 }

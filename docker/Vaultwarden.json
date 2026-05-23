@@ -37,7 +37,7 @@
     {
       "name": "",
       "key": "ROCKET_TLS",
-      "value": "{certs="/ssl/nginx.crt",key="/ssl/nginx.key"}",
+      "value": "{certs=\"/ssl/nginx.crt\",key=\"/ssl/nginx.key\"}",
       "description": "Use the x509 direct from the mos server without setting up an reverse proxy",
       "required": true,
       "mask": true

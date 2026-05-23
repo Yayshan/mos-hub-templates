@@ -1,0 +1,72 @@
+{
+  "name": "Databasement",
+  "repo": "davidcrty/databasement:1",
+  "network": "bridge",
+  "custom_ip": "",
+  "default_shell": "",
+  "privileged": false,
+  "extra_parameters": "",
+  "post_parameters": "",
+  "web_ui_url": "http://[IP]:[PORT:2226]",
+  "icon": "https://databasement-demo.crty.dev/favicon.ico",
+  "project": "https://github.com/David-Crty/databasement",
+  "support": "https://github.com/David-Crty/databasement/issues",
+  "description": "Self-hosted database backup manager with a web UI. Schedule, backup, and restore MySQL, PostgreSQL, MariaDB, Microsoft SQL Server, MongoDB, SQLite & Redis to S3, SFTP, or local storage. SSH Tunnel support.",
+  "paths": [
+    {
+      "name": "Data Path",
+      "mode": "",
+      "host": "/mnt/cache/appdata/databasement",
+      "container": "/data",
+      "description": ""
+    },
+    {
+      "name": "Backup Path",
+      "mode": "",
+      "host": "/mnt/cache/backup/databasement",
+      "container": "/backup",
+      "description": "only needed for backup storage on mos(preferred a btrfs Pool) - S3 storage is preferred"
+    }
+  ],
+  "ports": [
+    {
+      "name": "WebUI Port",
+      "protocol": "",
+      "host": "2226",
+      "container": "2226",
+      "description": ""
+    }
+  ],
+  "variables": [
+    {
+      "name": "WebUI URL",
+      "key": "APP_URL",
+      "value": "http://YOU-MOS-IP-OR-DNS:2226",
+      "mask": false,
+      "description": ""
+    },
+    {
+      "name": "Database for User, Config etc.",
+      "key": "DB_CONNECTION",
+      "value": "sqlite",
+      "mask": false,
+      "description": "You can also use postgresql"
+    },
+    {
+      "name": "Database Path for sqlite3",
+      "key": "DB_DATABASE",
+      "value": "/data/database.sqlite",
+      "mask": false,
+      "description": ""
+    },
+    {
+      "name": "Enables the Quee Worker",
+      "key": "ENABLE_QUEUE_WORKER",
+      "value": "true",
+      "mask": false,
+      "description": ""
+    }
+  ],
+  "devices": [],
+  "labels": [],
+  "gpus": []

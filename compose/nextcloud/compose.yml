@@ -1,0 +1,50 @@
+services:
+        app:
+                    image: nextcloud:fpm-alpine
+                    container_name: nextcloud-fpm
+                    restart: always
+                    volumes:
+                        - ${DATA_LOCATION}:/var/www/html
+                    depends_on:
+                        - database
+                        - redis
+                    environment:
+                          POSTGRES_HOST: ${POSTGRES_HOST}
+                          REDIS_HOST: ${REDIS_HOST}
+        database:
+                    image: docker.io/library/postgres:16
+                    container_name: nextcloud-database
+                    restart: always
+                    volumes:
+                        - ${DB_LOCATION}:/var/lib/postgresql/data
+                    environment:
+                          POSTGRES_DB: ${DB_DATABASE_NAME}
+                          POSTGRES_USER: ${DB_USERNAME}
+                          POSTGRES_PASSWORD: ${DB_PASSWORD}
+        redis:
+                    image: redis:alpine
+                    container_name: nextcloud-redis
+                    restart: always
+                    healthcheck:
+                      test: redis-cli ping || exit 1
+        web:
+                    image: nginx:stable-alpine
+                    container_name: nextcloud-web
+                    restart: always
+                    volumes:
+                        - ${DATA_LOCATION}:/var/www/html:ro
+                        - ${WEBSERVER_CONFIG_LOCATION}:/etc/nginx/nginx.conf
+                    depends_on:
+                        - app
+        cron:
+                    image: nextcloud:fpm-alpine
+                    container_name: nextcloud-cron
+                    user: www-data
+                    restart: always
+                    volumes:
+                        - ${DATA_LOCATION}:/var/www/html
+                    entrypoint:
+                        - /cron.sh
+                    depends_on:
+                        - database
+                        - redis

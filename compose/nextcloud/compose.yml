@@ -16,7 +16,7 @@ services:
                     container_name: nextcloud-database
                     restart: always
                     volumes:
-                        - ${DB_LOCATION}:/var/lib/postgresql/data
+                        - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
                     environment:
                           POSTGRES_DB: ${DB_DATABASE_NAME}
                           POSTGRES_USER: ${DB_USERNAME}
@@ -31,6 +31,8 @@ services:
                     image: nginx:stable-alpine
                     container_name: nextcloud-web
                     restart: always
+                    ports:
+                          - "${NEXTCLOUD_WEB_PORT:-8200}:80"
                     volumes:
                         - ${DATA_LOCATION}:/var/www/html:ro
                         - ${WEBSERVER_CONFIG_LOCATION}:/etc/nginx/nginx.conf

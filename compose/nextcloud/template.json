@@ -5,5 +5,6 @@
   "website": "https://nextcloud.com/de/",
   "icon": "https://raw.githubusercontent.com/Yayshan/mos-hub-templates/143b02530a9e6d26086af51db1dcd4cb3cfe4f73/images/nextcloud.png",
   "support": "https://github.com/nextcloud",
+  "readme_url": "https://github.com/Yayshan/mos-hub-templates/tree/main/docs",
   "web_ui_url": "http://[ADDRESS]:[PORT:80]/"
 }

@@ -1,0 +1,50 @@
+{
+  "name": "Prometheus",
+  "repo": "ghcr.io/prometheus/prometheus",
+  "category": ["monitoring"],
+  "registry": "",
+  "network": "bridge",
+  "custom_ip": null,
+  "default_shell": "sh",
+  "privileged": false,
+  "extra_parameters": "--restart=unless-stopped --no-healthcheck",
+  "post_parameters": null,
+  "cpu_set": null,
+  "web_ui_url": "http://[IP]:[PORT:9090]",
+  "icon": "https://prometheus.io/assets/prometheus_logo_grey.svg",
+  "project": "https://prometheus.io/",
+  "support": "https://github.com/prometheus/prometheus/issues",
+  "description": "Prometheus, a Cloud Native Computing Foundation project, is a systems and service monitoring system. It collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts when specified conditions are observed.",
+  "paths": [
+    {
+      "name": "Prometheus Config",
+      "host": "/mnt/cache/appdata/prometheus/config",
+      "container": "/etc/prometheus",
+      "mode": "rw",
+      "description": "Directory for prometheus.yml and optional additional configuration files.",
+      "required": true
+    },
+    {
+      "name": "Prometheus Data",
+      "host": "/mnt/cache/appdata/prometheus/data",
+      "container": "/prometheus",
+      "mode": "rw",
+      "description": "Prometheus persistent time-series database.",
+      "required": true
+    }
+  ],
+  "ports": [
+    {
+      "name": "Web UI",
+      "host": "9090",
+      "container": "9090",
+      "protocol": "tcp",
+      "description": "Prometheus WebUI and API.",
+      "required": true,
+      "mask": false
+    }
+  ],
+  "variables": [],
+  "devices": [],
+  "labels": []
+}

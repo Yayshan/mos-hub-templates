@@ -1,0 +1,13 @@
+{
+  "name": "Telegram Alerts",
+  "description": "Send SMART alerts from MOS to a Telegram bot",
+  "category": ["System", "Monitoring"],
+  "repository": "https://github.com/Yayshan/mos-telegram-alerts",
+  "architecture": ["all"],
+  "driver": false,
+  "settings": true,
+  "icon": "https://raw.githubusercontent.com/Yayshan/mos-hub-templates/main/images/telegram-alerts.svg",
+  "author": "Yayshan",
+  "homepage": "https://mos-official.net",
+  "support": "https://github.com/Yayshan/mos-telegram-alerts/issues"
+}

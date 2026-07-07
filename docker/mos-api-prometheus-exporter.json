@@ -1,0 +1,139 @@
+{
+  "name": "MOS API Prometheus Exporter",
+  "repo": "ghcr.io/yayshan/mos-api-prometheus-exporter:latest",
+  "category": ["monitoring", "metrics", "mos"],
+  "registry": "",
+  "network": "bridge",
+  "custom_ip": null,
+  "default_shell": "",
+  "privileged": false,
+  "extra_parameters": "--restart=unless-stopped",
+  "post_parameters": null,
+  "cpu_set": null,
+  "web_ui_url": "http://[IP]:[PORT:9108]/metrics",
+  "icon": "https://prometheus.io/assets/prometheus_logo_grey.svg",
+  "project": "https://github.com/Yayshan/mos-api-prometheus-exporter",
+  "support": "https://github.com/Yayshan/mos-api-prometheus-exporter/issues",
+  "description": "Kleiner Go-basierter Exporter für MOS API Telemetrie. Nutzt eingebaute MOS-Default-Metriken und bezieht sensible Daten wie API-URL und Token über Umgebungsvariablen. Optional kann eine Override-YAML gemountet werden.",
+  "paths": [
+    {
+      "name": "Override Config Directory",
+      "host": "/mnt/cache/appdata/mos-api-prometheus-exporter",
+      "container": "/app",
+      "mode": "ro",
+      "description": "Optionales Verzeichnis für config.override.yaml. Nur nötig, wenn du vom eingebauten Standard abweichen willst.",
+      "required": false
+    }
+  ],
+  "ports": [
+    {
+      "name": "Metrics Port",
+      "host": "9108",
+      "container": "9108",
+      "protocol": "tcp",
+      "description": "Prometheus Metrics Endpoint des Exporters.",
+      "required": true,
+      "mask": false
+    }
+  ],
+  "variables": [
+    {
+      "name": "MOS API Base URL",
+      "key": "MOS_API_BASE_URL",
+      "value": "http://mos.local/api/v1",
+      "description": "Basis-URL der MOS API.",
+      "required": true,
+      "mask": false
+    },
+    {
+      "name": "MOS API Token",
+      "key": "MOS_API_TOKEN",
+      "value": "",
+      "description": "Bearer-Token für die MOS API.",
+      "required": true,
+      "mask": true
+    },
+    {
+      "name": "Instance Label",
+      "key": "MOS_INSTANCE",
+      "value": "mos",
+      "description": "Prometheus Label für die MOS-Instanz.",
+      "required": false,
+      "mask": false
+    },
+    {
+      "name": "Site Label",
+      "key": "MOS_SITE",
+      "value": "default",
+      "description": "Prometheus Label für Standort oder Gruppe.",
+      "required": false,
+      "mask": false
+    },
+    {
+      "name": "Poll Interval",
+      "key": "MOS_POLL_INTERVAL",
+      "value": "15s",
+      "description": "Polling-Intervall für die MOS API.",
+      "required": false,
+      "mask": false
+    },
+    {
+      "name": "HTTP Timeout",
+      "key": "MOS_HTTP_TIMEOUT",
+      "value": "5s",
+      "description": "HTTP-Timeout pro API-Request.",
+      "required": false,
+      "mask": false
+    },
+    {
+      "name": "Override Config Path",
+      "key": "MOS_EXPORTER_OVERRIDE_CONFIG",
+      "value": "",
+      "description": "Optionaler Pfad zu einer Override-YAML im Container, z. B. /app/config.override.yaml.",
+      "required": false,
+      "mask": false
+    },
+    {
+      "name": "Metrics Auth Type",
+      "key": "MOS_METRICS_AUTH_TYPE",
+      "value": "",
+      "description": "Optional: Zugriffsschutz nur für /metrics. Unterstützt none, basic, bearer oder header.",
+      "required": false,
+      "mask": false
+    },
+    {
+      "name": "Metrics Auth User",
+      "key": "MOS_METRICS_AUTH_USER",
+      "value": "",
+      "description": "Optionaler Benutzername für /metrics bei Metrics Auth Type=basic.",
+      "required": false,
+      "mask": false
+    },
+    {
+      "name": "Metrics Auth Password",
+      "key": "MOS_METRICS_AUTH_PASS",
+      "value": "",
+      "description": "Optionales Passwort für /metrics bei Metrics Auth Type=basic.",
+      "required": false,
+      "mask": true
+    },
+    {
+      "name": "Metrics Auth Header",
+      "key": "MOS_METRICS_AUTH_HEADER",
+      "value": "Authorization",
+      "description": "Optionaler Headername für /metrics bei Metrics Auth Type=bearer oder header.",
+      "required": false,
+      "mask": false
+    },
+    {
+      "name": "Metrics Auth Token",
+      "key": "MOS_METRICS_AUTH_TOKEN",
+      "value": "",
+      "description": "Optionales Token für /metrics bei Metrics Auth Type=bearer oder header.",
+      "required": false,
+      "mask": true
+    }
+  ],
+  "devices": [],
+  "labels": []
+}

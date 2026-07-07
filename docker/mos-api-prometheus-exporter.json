@@ -1,5 +1,5 @@
 {
-  "name": "MOS API Prometheus Exporter",
+  "name": "MOS-API-Prometheus-Exporter",
   "repo": "ghcr.io/yayshan/mos-api-prometheus-exporter:latest",
   "category": ["monitoring", "metrics", "mos"],
   "registry": "",
@@ -11,7 +11,7 @@
   "post_parameters": null,
   "cpu_set": null,
   "web_ui_url": "http://[IP]:[PORT:9108]/metrics",
-  "icon": "https://prometheus.io/assets/prometheus_logo_grey.svg",
+  "icon": "https://raw.githubusercontent.com/Yayshan/mos-hub-templates/refs/heads/main/images/mos-api-exporter.png",
   "project": "https://github.com/Yayshan/mos-api-prometheus-exporter",
   "support": "https://github.com/Yayshan/mos-api-prometheus-exporter/issues",
   "description": "This is a small exporter written in Go that runs in a Docker Container It polls MOS API endpoints, maps JSON fields to Prometheus metrics, and exposes them via /metrics.",

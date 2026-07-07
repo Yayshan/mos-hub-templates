@@ -11,10 +11,10 @@
   "post_parameters": null,
   "cpu_set": null,
   "web_ui_url": "http://[IP]:[PORT:9090]",
-  "icon": "https://prometheus.io/_next/static/media/prometheus-logo.7aa022e5.svg",
+  "icon": "https://raw.githubusercontent.com/Yayshan/mos-hub-templates/refs/heads/main/images/prometheus_io.png",
   "project": "https://prometheus.io/",
   "support": "https://github.com/prometheus/prometheus/issues",
-  "description": "Prometheus, a Cloud Native Computing Foundation project, is a systems and service monitoring system. It collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts when specified conditions are observed.",
+  "description": "Prometheus, a Cloud Native Computing Foundation project, is a systems and service monitoring system. It collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts when specified conditions are observed. Important: the data directory mounted to /prometheus must be writable by the container user (commonly uid/gid 65534). If Prometheus fails with 'open /prometheus/queries.active: permission denied', fix the host directory ownership/permissions before starting.",
   "paths": [
     {
       "name": "Prometheus Config",
@@ -29,7 +29,7 @@
       "host": "/mnt/cache/appdata/prometheus/data",
       "container": "/prometheus",
       "mode": "rw",
-      "description": "Prometheus persistent time-series database.",
+      "description": "Prometheus persistent time-series database. Host directory must be writable by the container user; if needed run e.g. 'chown -R 65534:65534 /mnt/cache/appdata/prometheus/data'.",
       "required": true
     }
   ],

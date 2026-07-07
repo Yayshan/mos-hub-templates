@@ -14,7 +14,7 @@
   "icon": "https://prometheus.io/assets/prometheus_logo_grey.svg",
   "project": "https://github.com/Yayshan/mos-api-prometheus-exporter",
   "support": "https://github.com/Yayshan/mos-api-prometheus-exporter/issues",
-  "description": "Kleiner Go-basierter Exporter für MOS API Telemetrie. Nutzt eingebaute MOS-Default-Metriken und bezieht sensible Daten wie API-URL und Token über Umgebungsvariablen. Optional kann eine Override-YAML gemountet werden.",
+  "description": "This is a small exporter written in Go that runs in a Docker Container It polls MOS API endpoints, maps JSON fields to Prometheus metrics, and exposes them via /metrics.",
   "paths": [
     {
       "name": "Override Config Directory",
